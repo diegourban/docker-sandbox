@@ -22,4 +22,6 @@ docker run -d -P --name NOME dockersamples/static-site - ao executar, dá um nom
 
 docker run -d -p 12345:80 dockersamples/static-site - define uma porta específica para ser atribuída à porta 80 do container, neste caso 12345.
 
+docker run -v CAMINHO_HOST:CAMINHO_CONTAINER - configura o volume
+
 docker run -p 8080:3000 -v "C:\Users\Usuario\Desktop\volume-exemplo:/var/www" -w "/var/www" node npm start - roda um container apontando para o volume e inicia a aplicação do volume
