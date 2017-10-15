@@ -27,3 +27,19 @@ docker inspect ID_DO_CONTAINER - retorna informações do container
 docker run -v CAMINHO_HOST:CAMINHO_CONTAINER - configura o volume(dados persistentes) na maquina e container
 
 docker run -p 8080:3000 -v "C:\Users\Usuario\Desktop\volume-exemplo:/var/www" -w "/var/www" node npm start - roda um container apontando para o volume e inicia a aplicação do volume
+
+´´´docker build -f Dockerfile´´´ - cria uma imagem a partir de um Dockerfile.
+
+´´´docker build -f Dockerfile -t NOME_USUARIO/NOME_IMAGEM´´´ - constrói e nomeia uma imagem não-oficial.
+
+´´´docker build -f Dockerfile -t NOME_USUARIO/NOME_IMAGEM CAMINHO_DOCKERFILE´´´ - constrói e nomeia uma imagem não-oficial informando o caminho para o Dockerfile.
+
+´´´docker build -f Dockerfile -t diegourban/node .´´´ - faz o build da imagem de acordo com a descrição do Dockerfile
+
+´´´docker run -d -p 8080:3000 diegourban/node´´´ - roda a imagem criada
+
+´´´docker login´´´ - solicita login e senha para se autenticar no docker hub
+
+´´´docker push diegourban/node´´´ - envia a imagem desejada para o dockerhub
+
+´´´docker pull diegourban/node´´´ - obtem a imagem desejada do dockerhub
