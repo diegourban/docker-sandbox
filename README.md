@@ -2,6 +2,69 @@
 
 ## Introdução
 
+- Docker Engine: Faz o meio de campo entre os containers e o SO;
+- Docker Hub: Provê um repositório com muitas aplicações para você usar em sua infra;
+- Docker Swarm: Permite usar múltiplos docker hosts;
+
+### Instalando no Windows:
+Processo de instalação do Docker for Windows e do Docker Toolbox.
+
+#### Instalando com Docker for Windows
+Pré requisitos:
+- Arquitetura 64 bits
+- Versão Pro, Enterprise ou Education.
+- Virtualização habilitada
+
+Na página do Docker for Windows, baixe o instalador. Siga o passo a passo do instalador para aceitar a licença, autorize o instalador e siga com a instalação. Ao clicar em Finish, encerre a sessão do Windows e inicie-a novamente. Ao fazer o login, habilitar o Hyper-V, clicando em Ok, para que o computador seja reiniciado.
+
+Quando o computador terminar a reinicialização, irá aparecer um ícone do Docker na barra inferior, à direita, ao lado do relógio. O Docker pode demorar um pouco para inicializar, mas quando a mensagem Docker is running for exibida, significa que ele foi instalado com sucesso e você já pode utilizá-lo.
+
+#### Instalando com Docker Toolbox
+Pré requisitos:
+- Arquitetura 64 bits
+- Virtualização habilitada
+
+Para instalar o Docker Toolbox, primeiramente baixe-o. Ainda assim, garanta que o seu Windows seja 64bits e que ele tenha a virtualização habilitada.
+
+O Docker Toolbox vai instalar tudo que é necessário para que você possa trabalhar com o Docker em seu computador, pois ele irá instalar também a Oracle VirtualBox, a máquina virtual da Oracle que vai permitir executar o Docker sem maiores problemas.
+
+A diferença é que, quando você trabalha com o Docker for Windows, você pode utilizar o terminal nativo do Windows, já no Docker Toolbox, ele instalará o Docker Machine, que deverá ser utilizado no lugar do terminal nativo do Windows.
+
+
+### Instalando no Linux:
+Neste passo-a-passo, será visto como instalar o Docker no Ubuntu 64 bits. Todos os comandos listados devem ser executados no seu terminal.
+
+Antes de mais nada, remova possíveis versões antigas do Docker:
+```sudo apt-get remove docker docker-engine docker.io```
+
+Depois, atualize o banco de dados de pacotes:
+```sudo apt-get update```
+
+Agora, adicione ao sistema a chave GPG oficial do repositório do Docker:
+```curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -```
+
+Adicione o repositório do Docker às fontes do APT:
+```
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+```
+
+Atualize o banco de dados de pacotes, pare ter acesso aos pacotes do Docker a partir do novo repositório adicionado:
+```sudo apt-get update```
+
+Por fim, instale o pacote docker-ce:
+```sudo apt-get install docker-ce```
+
+Caso você queira, você pode verificar se o Docker foi instalado corretamente verificando a sua versão:
+```sudo docker version```
+
+E para executar o Docker sem precisar de sudo, adicione o seu usuário ao grupo docker:
+```sudo usermod -aG docker $(whoami)```
+
+### Comandos:
+
 ```docker version``` - versão do docker.
 
 ```docker run NOME_DA_IMAGEM``` - cria um container com a respectiva imagem passada como parâmetro.
@@ -15,7 +78,7 @@
 - Como imagens são Read-Only os containers criam nova camada (layer) para guardar as alterações;
 - O comando Docker run e as possibilidades de execução de um container.
 
-#### Comandos:
+### Comandos:
 
 ```docker ps``` - exibe todos os containers em execução no momento.
 
@@ -58,7 +121,7 @@
 - Principais comandos como FROM, MAINTAINER, COPY, RUN, EXPOSE e ENTRYPOINT;
 - É possível subir uma imagem criada através de um Dockerfile para o Docker Hub e disponibilizar para os desenvolvedores;
 
-#### Comandos:
+### Comandos:
 
 ```docker build -f Dockerfile``` - cria uma imagem a partir de um Dockerfile.
 
@@ -82,7 +145,7 @@
 - É possível criar suas próprias redes e realizar a conexão entre os containers.
 - Durante a criação de uma rede precisamos indicar qual driver utilizaremos, geralmente, o driver bridge
 
-#### Comandos:
+### Comandos:
 
 ```hostname -i``` - mostra o ip atribuído ao container pelo docker (funciona apenas dentro do container).
 
@@ -96,7 +159,7 @@
 
 ```ping app-02``` - rodar no container do app-01.
 
-#### Exemplo:
+### Exemplo:
 
 Baixando as imagens:
 ```
