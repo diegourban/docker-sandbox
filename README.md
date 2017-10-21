@@ -1,51 +1,73 @@
 # docker-sandbox
 
-docker ps - exibe todos os containers em execução no momento.
+### Introdução
 
-docker ps -a - exibe todos os containers, independente de estarem em execução ou não.
+```docker version``` - versão do docke.
 
-docker run -it NOME_DA_IMAGEM - conecta o terminal que estamos utilizando com o do container.
+```docker run NOME_DA_IMAGEM``` - cria um container com a respectiva imagem passada como parâmetro.
 
-docker start ID_CONTAINER - inicia o container com id em questão.
+### Tabalhando com imagens
 
-docker stop ID_CONTAINER - interrompe o container com id em questão.
+- Imagens do Docker possuem um sistema de arquivos em camadas (Layered File System) e os benefícios dessa abordagem principalmente para o download de novas imagens;
+- Imagens são Read-Only sempre (apenas para leitura);
+- Containers representam uma instância de uma imagem;
+- Como imagens são Read-Only os containers criam nova camada (layer) para guardar as alterações;
+- O comando Docker run e as possibilidades de execução de um container.
 
-docker start -a -i ID_CONTAINER - inicia o container com id em questão e integra os terminais, além de permitir interação entre ambos.
+#### Comandos:
 
-docker rm ID_CONTAINER - remove o container com id em questão.
+```docker ps``` - exibe todos os containers em execução no momento.
 
-docker container prune - remove todos os containers que estão parados.
+```docker ps -a``` - exibe todos os containers, independente de estarem em execução ou não.
 
-docker rmi NOME_DA_IMAGEM - remove a imagem passada como parâmetro.
+```docker run -it NOME_DA_IMAGEM``` - conecta o terminal que estamos utilizando com o do container.
 
-docker run -d -P --name NOME dockersamples/static-site - ao executar, dá um nome ao container.
+```docker start ID_CONTAINER``` - inicia o container com id em questão.
 
-docker run -d -p 12345:80 dockersamples/static-site - define uma porta específica para ser atribuída à porta 80 do container, neste caso 12345.
+```docker stop ID_CONTAINER``` - interrompe o container com id em questão.
 
-docker inspect ID_DO_CONTAINER - retorna informações do container
+```docker start -a -i ID_CONTAINER``` - inicia o container com id em questão e integra os terminais, além de permitir interação entre ambos.
 
-docker run -v CAMINHO_HOST:CAMINHO_CONTAINER - configura o volume(dados persistentes) na maquina e container
+```docker rm ID_CONTAINER``` - remove o container com id em questão.
 
-docker run -p 8080:3000 -v "C:\Users\Usuario\Desktop\volume-exemplo:/var/www" -w "/var/www" node npm start - roda um container apontando para o volume e inicia a aplicação do volume
+```docker container prune``` - remove todos os containers que estão parados.
 
-´´´docker build -f Dockerfile´´´ - cria uma imagem a partir de um Dockerfile.
+```docker rmi NOME_DA_IMAGEM``` - remove a imagem passada como parâmetro.
 
-´´´docker build -f Dockerfile -t NOME_USUARIO/NOME_IMAGEM´´´ - constrói e nomeia uma imagem não-oficial.
+```docker run -d -P --name NOME dockersamples/static-site``` - ao executar, dá um nome ao container.
 
-´´´docker build -f Dockerfile -t NOME_USUARIO/NOME_IMAGEM CAMINHO_DOCKERFILE´´´ - constrói e nomeia uma imagem não-oficial informando o caminho para o Dockerfile.
+```docker run -d -p 12345:80 dockersamples/static-site``` - define uma porta específica para ser atribuída à porta 80 do container, neste caso 12345.
 
-´´´docker build -f Dockerfile -t diegourban/node .´´´ - faz o build da imagem de acordo com a descrição do Dockerfile
+### Usando volumes
 
-´´´docker run -d -p 8080:3000 diegourban/node´´´ - roda a imagem criada
+- Container são voláteis, isso é, ao remover um removemos os dados juntos;
+- Para deixar os dados persistente devemos usar Volumes;
+- Volumes salvos não ficam no container e sim no Docker Host;
 
-´´´docker login´´´ - solicita login e senha para se autenticar no docker hub
+```docker inspect ID_DO_CONTAINER``` - retorna informações do container
 
-´´´docker push diegourban/node´´´ - envia a imagem desejada para o dockerhub
+```docker run -v CAMINHO_HOST:CAMINHO_CONTAINER``` - configura o volume(dados persistentes) na maquina e container
 
-´´´docker pull diegourban/node´´´ - obtem a imagem desejada do dockerhub
+```docker run -p 8080:3000 -v "C:\Users\Usuario\Desktop\volume-exemplo:/var/www" -w "/var/www" node npm start``` - roda um container apontando para o volume e inicia a aplicação do volume
+
+```docker build -f Dockerfile``` - cria uma imagem a partir de um Dockerfile.
+
+```docker build -f Dockerfile -t NOME_USUARIO/NOME_IMAGEM``` - constrói e nomeia uma imagem não-oficial.
+
+```docker build -f Dockerfile -t NOME_USUARIO/NOME_IMAGEM CAMINHO_DOCKERFILE``` - constrói e nomeia uma imagem não-oficial informando o caminho para o Dockerfile.
+
+```docker build -f Dockerfile -t diegourban/node .``` - faz o build da imagem de acordo com a descrição do Dockerfile
+
+```docker run -d -p 8080:3000 diegourban/node``` - roda a imagem criada
+
+```docker login``` - solicita login e senha para se autenticar no docker hub
+
+```docker push diegourban/node``` - envia a imagem desejada para o dockerhub
+
+```docker pull diegourban/node``` - obtem a imagem desejada do dockerhub
 
 
-### Comunicação entre container
+### Comunicação entre containers
 
 - Imagens criadas pelo Docker acessam a mesma rede, porém apenas através de IP.
 - É possível criar suas próprias redes e realizar a conexão entre os containers.
@@ -53,17 +75,17 @@ docker run -p 8080:3000 -v "C:\Users\Usuario\Desktop\volume-exemplo:/var/www" -w
 
 Comandos:
 
-´´´hostname -i´´´ - mostra o ip atribuído ao container pelo docker (funciona apenas dentro do container).
+```hostname -i``` - mostra o ip atribuído ao container pelo docker (funciona apenas dentro do container).
 
-´´´docker network create --driver bridge minha-rede´´´ - cria uma rede chamada "minha-rede" usando o driver de bridge
+```docker network create --driver bridge minha-rede``` - cria uma rede chamada "minha-rede" usando o driver de bridge
 
-´´´docker network ls´´´ - lista as redes
+```docker network ls``` - lista as redes
 
-´´´docker run -it --name app-01 --network minha-rede ubuntu´´´ - roda um ubuntu com nome de "app-01" na rede "minha-rede"
+```docker run -it --name app-01 --network minha-rede ubuntu``` - roda um ubuntu com nome de "app-01" na rede "minha-rede"
 
-´´´apt-get update && apt-get install iptuils-ping´´´ - se o ping não estiver instalado na imagem do containers
+```apt-get update && apt-get install iptuils-ping``` - se o ping não estiver instalado na imagem do containers
 
-´´´ping app-02´´´ - rodar no container do app-01
+```ping app-02``` - rodar no container do app-01
 
 
 Baixando as imagens:
@@ -76,3 +98,8 @@ docker run -d --name meu-app --network minha-rede -p 8080:3000 douglasq/alura-bo
 
 http://localhost:8080/seed/ - para popular os dados no bd
 http://localhost:8080/ - para acessar o app
+
+### Docker Compose
+
+
+Como subir múltiplos containers?
