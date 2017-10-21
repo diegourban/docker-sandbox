@@ -1,13 +1,13 @@
 # docker-sandbox
 
-### Introdução
+## Introdução
 
 ```docker version``` - versão do docker.
 
 ```docker run NOME_DA_IMAGEM``` - cria um container com a respectiva imagem passada como parâmetro.
 
 
-### Tabalhando com imagens
+## Tabalhando com imagens
 
 - Imagens do Docker possuem um sistema de arquivos em camadas (Layered File System) e os benefícios dessa abordagem principalmente para o download de novas imagens;
 - Imagens são Read-Only sempre (apenas para leitura);
@@ -40,7 +40,7 @@
 ```docker run -d -p 12345:80 dockersamples/static-site``` - define uma porta específica para ser atribuída à porta 80 do container, neste caso 12345.
 
 
-### Usando volumes
+## Usando volumes
 
 - Container são voláteis, isso é, ao remover um removemos os dados juntos;
 - Para deixar os dados persistente devemos usar Volumes;
@@ -52,7 +52,7 @@
 
 ```docker run -p 8080:3000 -v "C:\Users\Usuario\Desktop\volume-exemplo:/var/www" -w "/var/www" node npm start``` - roda um container apontando para o volume e inicia a aplicação do volume.
 
-### Construindo nossas próprias imagens
+## Construindo nossas próprias imagens
 
 - O Dockerfile define os comandos para executar instalações complexas e com características específicas;
 - Principais comandos como FROM, MAINTAINER, COPY, RUN, EXPOSE e ENTRYPOINT;
@@ -76,13 +76,13 @@
 
 ```docker pull diegourban/node``` - obtem a imagem desejada do dockerhub.
 
-### Comunicação entre containers
+## Comunicação entre containers
 
 - Imagens criadas pelo Docker acessam a mesma rede, porém apenas através de IP.
 - É possível criar suas próprias redes e realizar a conexão entre os containers.
 - Durante a criação de uma rede precisamos indicar qual driver utilizaremos, geralmente, o driver bridge
 
-Comandos:
+#### Comandos:
 
 ```hostname -i``` - mostra o ip atribuído ao container pelo docker (funciona apenas dentro do container).
 
@@ -114,6 +114,6 @@ http://localhost:8080/ - para acessar o app
 http://localhost:8080/seed/ - para popular os dados no bd
 
 
-### Docker Compose
+## Docker Compose
 
 Como subir múltiplos containers?
