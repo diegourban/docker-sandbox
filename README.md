@@ -75,7 +75,7 @@ sudo docker version
 E para executar o Docker sem precisar de sudo, adicione o seu usuário ao grupo docker:
 ```
 sudo usermod -aG docker $(whoami)
-```
+  ```
 
 ### Comandos:
 
@@ -123,11 +123,14 @@ sudo usermod -aG docker $(whoami)
 - Para deixar os dados persistente devemos usar Volumes;
 - Volumes salvos não ficam no container e sim no Docker Host;
 
+### Comandos:
+
 ```docker inspect ID_DO_CONTAINER``` - retorna informações do container.
 
 ```docker run -v CAMINHO_HOST:CAMINHO_CONTAINER``` - configura o volume(dados persistentes) na maquina e container.
 
 ```docker run -p 8080:3000 -v "C:\Users\Usuario\Desktop\volume-exemplo:/var/www" -w "/var/www" node npm start``` - roda um container apontando para o volume e inicia a aplicação do volume.
+
 
 ## Construindo nossas próprias imagens
 
@@ -152,6 +155,7 @@ sudo usermod -aG docker $(whoami)
 ```docker push diegourban/node``` - envia a imagem desejada para o dockerhub.
 
 ```docker pull diegourban/node``` - obtem a imagem desejada do dockerhub.
+
 
 ## Comunicação entre containers
 
@@ -187,8 +191,8 @@ docker run -d --name meu-mongo --network minha-rede mongo
 docker run -d --name meu-app --network minha-rede -p 8080:3000 douglasq/alura-books:cap05
 ```
 
-http://localhost:8080/ - para acessar o app
-http://localhost:8080/seed/ - para popular os dados no bd
+```http://localhost:8080/``` - para acessar o app
+```http://localhost:8080/seed/``` - para popular os dados no bd
 
 
 ## Docker Compose
