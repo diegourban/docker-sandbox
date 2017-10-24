@@ -197,4 +197,48 @@ docker run -d --name meu-app --network minha-rede -p 8080:3000 douglasq/alura-bo
 
 ## Docker Compose
 
-Como subir múltiplos containers?
+Como lidar com múltiplos containers simultaneamente?
+
+### Instalando no Linux:
+O Docker Compose não é instalado por padrão no Linux, então você instalá-lo por fora. Para tal, baixe-o na sua versão mais atual, que pode ser visualizada no seu GitHub, executando o comando abaixo:
+
+```
+sudo curl -L https://github.com/docker/compose/releases/download/1.15.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+```
+
+Após isso, dê permissão de execução para o docker-compose:
+
+```
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+### Comandos:
+
+```docker-compose build``` - constrói os serviços
+
+```docker-compose up``` - sobe os serviços criados
+
+```docker-compose up -d``` - sobe os serviços criados em modo de terminal detached
+
+```docker-compose ps``` - lista os serviços que estão rodando
+
+```docker-compose down``` - para o serviços criados
+
+```docker-compose restart``` - executa down e up
+
+```docker exec -it alura-books-1 ping node2``` - executa um comando de ping para o node2 de dentro do alura-books-1
+
+```docker-compose --help``` - exibe o help de comandos
+
+### Exemplo:
+
+Para construir, subir e conferir se os containers estão rudando:
+
+```
+docker-compose build
+docker-compose up
+docker-compose ps
+```
+
+```http://localhost:80/``` - para acessar o app
+```http://localhost:80/seed/``` - para popular os dados no bd
