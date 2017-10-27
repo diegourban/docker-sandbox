@@ -34,6 +34,8 @@ A diferença é que, quando você trabalha com o Docker for Windows, você pode 
 ### Instalando no Linux:
 Neste passo-a-passo, será visto como instalar o Docker no Ubuntu 64 bits. Todos os comandos listados devem ser executados no seu terminal.
 
+https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce-1
+
 Antes de mais nada, remova possíveis versões antigas do Docker:
 ```
 sudo apt-get remove docker docker-engine docker.io
@@ -56,6 +58,7 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 ```
+*Sometimes, in a distribution like Linux Mint, you might have to change $(lsb_release -cs) to your parent Ubuntu distribution. For example, if you are using Linux Mint Rafaela, you could use trusty.
 
 Atualize o banco de dados de pacotes, pare ter acesso aos pacotes do Docker a partir do novo repositório adicionado:
 ```
