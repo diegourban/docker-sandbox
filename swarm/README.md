@@ -340,7 +340,7 @@ Para visualizar os serviços:
 docker service ls
 
 Para remover toda a stack:
-docker stam rm my_stack_name
+docker stack rm my_stack_name
 
 ### Volumes e Swarm
 
